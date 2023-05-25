@@ -1,5 +1,6 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer, MessageBody, ConnectedSocket } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { Message } from 'src/interface/message.interface';
 
 @WebSocketGateway({ cors: true })
 export class SocketIoGateway {
@@ -8,9 +9,9 @@ export class SocketIoGateway {
   server: Server;
 
   @SubscribeMessage('message')
-  handleMessage(@MessageBody() data: any, @ConnectedSocket() socket: Socket): string {
+  handleMessage(@MessageBody() data: Message, @ConnectedSocket() socket: Socket): string {
     const socketId = socket.id
-    const message = data.message!
+    const message = data.message
     console.log('Hello from',socketId);
     this.server.emit('message', {id:socketId, message:message});
     return;
