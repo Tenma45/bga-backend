@@ -1,7 +1,8 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer, MessageBody, ConnectedSocket } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Message } from 'src/interface/message.interface';
-import { Room, User } from 'src/interface/room.interface';
+import { Message } from 'src/model/message.model';
+import { Room } from 'src/model/room.model';
+import { User } from 'src/model/user.model';
 
 @WebSocketGateway({ cors: true })
 export class SocketIoGateway {
@@ -57,5 +58,4 @@ export class SocketIoGateway {
     // Leave the room
     client.leave(roomId);
   }
-}
 }
