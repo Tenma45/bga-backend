@@ -1,4 +1,4 @@
-import { User } from 'src/model/user.interface'
+import { User } from 'src/models/user.model'
 
 export interface Room {
   id: string;
